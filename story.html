@@ -212,6 +212,42 @@
     letter-spacing: 2px;
   }
 
+  /* ─── INLINE STORY IMAGE ─── */
+  .story-image {
+    position: relative;
+    margin: 36px 0;
+    border: 1px solid var(--gold-dark);
+    padding: 6px;
+    background: var(--black-rich);
+  }
+
+  .story-image::before {
+    content: '';
+    position: absolute;
+    inset: 3px;
+    border: 1px solid rgba(201,168,76,0.15);
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .story-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .story-image-caption {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 500;
+    font-size: 20px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold-light);
+    text-align: center;
+    margin-top: 16px;
+    text-shadow: 0 0 12px rgba(201,168,76,0.2);
+  }
+
   .story-quote {
     border-left: 2px solid var(--gold-dark);
     padding: 20px 28px;
@@ -335,6 +371,12 @@
   <div class="story-section">
     <h2>Раждането на AZIS</h2>
     <p>Примерът за тихия реформатор ни мотивира през 1996-та година в прохождащата млада компания ЯВОР да създадем линията Азис. Тази линия се развива в годините с добавяне на нови модели и примери за съвместяване на привидно несъвместимото в дизайна и архитектурата.</p>
+
+    <div class="story-image">
+      <img src="images/azis-1996.jpg" alt="Азис 1 - 1996">
+    </div>
+    <div class="story-image-caption">Азис 1 — 1996 г.</div>
+
     <p>Тя е като <span class="highlight">среща между два свята на красотата</span>.</p>
     <p>Между <span class="highlight">богатството, орнаментите и топлината на Ориента</span> и <span class="highlight">чистите линии, функционалността и хармонията на съвременния европейски дом</span>.</p>
   </div>
