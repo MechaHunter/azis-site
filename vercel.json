@@ -1,0 +1,8 @@
+{
+  "cleanUrls": true,
+  "routes": [
+    { "src": "/story", "dest": "/story.html" },
+    { "src": "/mobile", "dest": "/mobile.html" },
+    { "src": "/", "dest": "/index.html" }
+  ]
+}

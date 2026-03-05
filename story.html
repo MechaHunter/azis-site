@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AZIS — История</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Playfair+Display:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg: #050505;
+    --gold: #c9a84c;
+    --gold-light: #e4cc7a;
+    --gold-dark: #8a6d2b;
+    --black-rich: #0a0a0a;
+    --text: #f0ead6;
+    --text-dim: #6b6347;
+    --text-body: #b8b0a0;
+    --border-gold: #2d2618;
+  }
+
+  body {
+    font-family: 'Playfair Display', serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ─── HEADER ─── */
+  .header {
+    position: relative;
+    width: 100%;
+    padding: 48px 20px 40px;
+    text-align: center;
+    background: transparent;
+    overflow: hidden;
+  }
+
+  .header::before {
+    content: '';
+    position: absolute;
+    top: -20%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(201,168,76,0.08) 0%, rgba(201,168,76,0.02) 40%, transparent 65%);
+    pointer-events: none;
+  }
+
+  .header::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 70%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold-dark), var(--gold), var(--gold-dark), transparent);
+  }
+
+  .logo-container {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .logo-img {
+    height: 100px;
+    width: auto;
+    filter: brightness(1.8) drop-shadow(0 0 15px rgba(255,255,255,0.12));
+  }
+
+  .back-link {
+    display: inline-block;
+    margin-top: 20px;
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 400;
+    font-size: 12px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold);
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  .back-link:hover { color: var(--gold-light); }
+
+  /* ─── TITLE ─── */
+  .story-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: 42px;
+    letter-spacing: 2px;
+    text-align: center;
+    color: var(--text);
+    margin: 40px auto 0;
+    line-height: 1.2;
+    max-width: 600px;
+    padding: 0 20px;
+  }
+
+  /* ─── HERO IMAGE ─── */
+  .hero-image-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 900px;
+    margin: 40px auto 0;
+    overflow: hidden;
+  }
+
+  .hero-image-wrapper img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .hero-image-wrapper::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(to bottom, transparent 0%, transparent 75%, rgba(5,5,5,0.4) 88%, var(--bg) 100%),
+      linear-gradient(to top, transparent 95%, rgba(5,5,5,0.3) 100%),
+      linear-gradient(to right, var(--bg) 0%, transparent 4%, transparent 96%, var(--bg) 100%);
+    pointer-events: none;
+  }
+
+  /* ─── STORY ─── */
+  .story-wrapper {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 32px 80px;
+  }
+
+  .gold-sep {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 32px 80px;
+    gap: 14px;
+  }
+  .gold-sep .line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold-dark));
+  }
+  .gold-sep .line:last-child {
+    background: linear-gradient(90deg, var(--gold-dark), transparent);
+  }
+  .gold-sep .diamond {
+    width: 6px;
+    height: 6px;
+    background: var(--gold);
+    transform: rotate(45deg);
+    box-shadow: 0 0 8px rgba(201,168,76,0.4);
+  }
+
+  .story-section {
+    margin-bottom: 48px;
+    animation: fadeUp 0.6s ease forwards;
+    opacity: 0;
+  }
+
+  .story-section:nth-child(1) { animation-delay: 0.1s; }
+  .story-section:nth-child(2) { animation-delay: 0.2s; }
+  .story-section:nth-child(3) { animation-delay: 0.3s; }
+  .story-section:nth-child(4) { animation-delay: 0.4s; }
+  .story-section:nth-child(5) { animation-delay: 0.5s; }
+  .story-section:nth-child(6) { animation-delay: 0.6s; }
+  .story-section:nth-child(7) { animation-delay: 0.7s; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .story-section h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 400;
+    font-size: 24px;
+    letter-spacing: 3px;
+    color: var(--gold-light);
+    margin-bottom: 18px;
+    text-transform: uppercase;
+  }
+
+  .story-section p {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: 18px;
+    line-height: 1.9;
+    color: var(--text-body);
+    margin-bottom: 16px;
+  }
+
+  .story-section .highlight {
+    color: var(--gold-light);
+    font-weight: 500;
+  }
+
+  .story-section .name {
+    font-family: 'Playfair Display', serif;
+    font-weight: 500;
+    font-size: 28px;
+    color: var(--text);
+    display: block;
+    text-align: center;
+    margin: 24px 0;
+    letter-spacing: 2px;
+  }
+
+  .story-quote {
+    border-left: 2px solid var(--gold-dark);
+    padding: 20px 28px;
+    margin: 32px 0;
+    background: rgba(201,168,76,0.03);
+  }
+
+  .story-quote p {
+    font-style: italic;
+    font-size: 20px;
+    color: var(--gold-light);
+    line-height: 1.7;
+  }
+
+  /* ─── FOOTER ─── */
+  .site-footer {
+    text-align: center;
+    padding: 36px 20px 52px;
+    position: relative;
+  }
+
+  .site-footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold-dark), transparent);
+  }
+
+  .footer-logo-container {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .footer-logo-img {
+    height: 55px;
+    width: auto;
+    filter: brightness(1.8) drop-shadow(0 0 8px rgba(255,255,255,0.1));
+  }
+
+  .footer-copy {
+    font-size: 14px;
+    letter-spacing: 4px;
+    color: var(--gold);
+    margin-top: 14px;
+  }
+
+  .gold-ambient {
+    width: 100%;
+    max-width: 400px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent 10%, var(--gold-dark) 35%, var(--gold) 50%, var(--gold-dark) 65%, transparent 90%);
+    opacity: 0.5;
+    margin: 24px auto 0;
+  }
+
+  @media (max-width: 600px) {
+    .story-title { font-size: 30px; }
+    .story-section h2 { font-size: 18px; }
+    .story-section p { font-size: 16px; }
+    .story-section .name { font-size: 22px; }
+    .story-quote p { font-size: 17px; }
+    .story-wrapper { padding: 0 20px 60px; }
+    .gold-sep { padding: 24px 40px; }
+    .logo-img { height: 70px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="logo-container">
+    <img class="logo-img" src="images/azis transparent logo.png" alt="AZIS">
+  </div>
+  <br>
+  <a href="/" class="back-link">&larr; Колекции</a>
+</header>
+
+<h1 class="story-title">Азис, История за смелост, красота и среща на два свята</h1>
+
+<div class="hero-image-wrapper">
+  <img src="images/azis og 4k.png" alt="Азис">
+</div>
+
+<main class="story-wrapper">
+
+  <div class="gold-sep"><span class="line"></span><span class="diamond"></span><span class="line"></span></div>
+
+  <div class="story-section">
+    <p>Историята помни владетели, които печелят битки. Но понякога истинската промяна идва от тези, които имат смелостта да променят мисленето на своето време.</p>
+    <p>Такъв владетел е</p>
+    <span class="name">Султан Абдул Азис</span>
+  </div>
+
+  <div class="story-section">
+    <p>В средата на XIX век Османската империя стои между два свята – древния Ориент и бързо развиваща се Европа. Това е време на съмнения, но и на нови възможности. И именно тогава султан Абдул Азис избира пътя на промяната.</p>
+    <p>По негово време империята започва да се събужда. Строят се железници и телеграфни линии, появяват се нови училища, модернизира се армията. <span class="highlight">Старият свят започва бавно да отваря врати към новия.</span></p>
+  </div>
+
+  <div class="story-section">
+    <h2>Пътуването към Европа</h2>
+    <p>През 1867 г. той прави нещо, което никой османски султан преди него не е правил – напуска пределите на империята и тръгва към Европа. Там се среща с най-влиятелните владетели на своето време – Наполеон III и кралица Виктория.</p>
+    <p>Това пътуване се превръща в символ на една нова идея: <span class="highlight">че различните култури могат да се срещнат, да се разберат и да създадат нещо по-красиво заедно.</span></p>
+  </div>
+
+  <div class="story-section">
+    <h2>Българската Екзархия</h2>
+    <p>Малко по-късно, през 1870 г., султанът подписва фермана за създаването на <span class="highlight">Българската екзархия</span> – акт, който дава на българския народ духовна свобода и нова надежда.</p>
+  </div>
+
+  <div class="story-section">
+    <div class="story-quote">
+      <p>Това е история за смелостта да изграждаш мостове между различни светове, написана преди 150 години, която сега препрочитаме.</p>
+    </div>
+  </div>
+
+  <div class="story-section">
+    <h2>Раждането на AZIS</h2>
+    <p>Примерът за тихия реформатор ни мотивира през 1996-та година в прохождащата млада компания ЯВОР да създадем линията Азис. Тази линия се развива в годините с добавяне на нови модели и примери за съвместяване на привидно несъвместимото в дизайна и архитектурата.</p>
+    <p>Тя е като <span class="highlight">среща между два свята на красотата</span>.</p>
+    <p>Между <span class="highlight">богатството, орнаментите и топлината на Ориента</span> и <span class="highlight">чистите линии, функционалността и хармонията на съвременния европейски дом</span>.</p>
+  </div>
+
+  <div class="story-section">
+    <h2>Философията</h2>
+    <p>Във всяка форма, във всеки детайл и във всяка линия се преплитат традиция и модерност, история и съвременност.</p>
+    <p>Това е стил, който не просто украсява пространството – <span class="highlight">той създава атмосфера</span>, жадна за комфорт, но подчинена на съвременната архитектура. Атмосфера на изтънченост, характер и културна дълбочина.</p>
+
+    <div class="story-quote">
+      <p>Азис е нашият поклон към една идея, родена преди повече от век – че когато културите се срещнат с уважение и вдъхновение, се ражда истинската красота.</p>
+    </div>
+  </div>
+
+</main>
+
+<footer class="site-footer">
+  <div class="footer-logo-container">
+    <img class="footer-logo-img" src="images/azis transparent logo.png" alt="AZIS">
+  </div>
+  <div class="footer-copy">&copy; 2024 — 2026 All Rights Reserved</div>
+  <div class="gold-ambient"></div>
+</footer>
+
+</body>
+</html>

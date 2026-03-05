@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AZIS — Luxury Furniture</title>
+<script>
+  if (/Mobi|Android|iPhone|iPad/i.test(navigator.userAgent)) {
+    window.location.replace('/mobile');
+  }
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Playfair+Display:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg: #050505;
+    --gold: #c9a84c;
+    --gold-light: #e4cc7a;
+    --gold-dark: #8a6d2b;
+    --gold-glow: rgba(201,168,76,0.15);
+    --black-rich: #0a0a0a;
+    --text: #f0ead6;
+    --text-dim: #6b6347;
+    --border-gold: #2d2618;
+  }
+
+  body {
+    font-family: 'Playfair Display', serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ─── HEADER BAR ─── */
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    padding: 0 40px;
+    background: rgba(5,5,5,0.95);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border-bottom: 1px solid var(--border-gold);
+  }
+
+  .header-logo-link {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    padding: 14px 0;
+    margin-right: 40px;
+    flex-shrink: 0;
+  }
+
+  .header-logo-img {
+    height: 70px;
+    width: auto;
+    filter: brightness(1.8) drop-shadow(0 0 10px rgba(255,255,255,0.1));
+  }
+
+  .header-nav {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    margin-left: auto;
+  }
+
+  /* ─── STORY LINK ─── */
+  .story-link {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    padding: 14px 28px;
+    transition: opacity 0.4s ease;
+    border-right: 1px solid var(--border-gold);
+  }
+  .story-link:hover { opacity: 0.8; }
+  .story-link .story-brand {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: 24px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: var(--gold-light);
+    line-height: 1;
+  }
+  .story-link .story-tagline {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 600;
+    font-size: 15px;
+    letter-spacing: 1.5px;
+    color: var(--gold);
+    margin-top: 5px;
+    line-height: 1.3;
+    max-width: 300px;
+  }
+
+  /* ─── YEAR BUTTONS ─── */
+  .year-btn {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 700;
+    font-size: 26px;
+    letter-spacing: 3px;
+    padding: 22px 40px;
+    border: none;
+    background: transparent;
+    color: var(--text-body, #b8b0a0);
+    cursor: pointer;
+    transition: all 0.5s ease;
+    text-transform: uppercase;
+    position: relative;
+  }
+
+  .year-btn::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 20%;
+    right: 20%;
+    height: 2px;
+    background: var(--gold);
+    transform: scaleX(0);
+    transition: transform 0.5s ease;
+    box-shadow: 0 0 10px rgba(201,168,76,0.4);
+  }
+
+  .year-btn:hover { color: var(--gold-light); }
+  .year-btn.active::after { transform: scaleX(1); }
+  .year-btn.active {
+    color: var(--gold-light);
+    text-shadow: 0 0 20px rgba(201,168,76,0.3);
+  }
+
+  .year-btn .badge {
+    display: inline-block;
+    font-family: 'Playfair Display', serif;
+    font-size: 7px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    background: linear-gradient(135deg, var(--gold), var(--gold-light));
+    color: #000;
+    padding: 3px 7px;
+    margin-right: 8px;
+    vertical-align: middle;
+  }
+
+  /* ─── HERO IMAGE ─── */
+  .hero {
+    position: relative;
+    width: 100%;
+    max-height: 60vh;
+    overflow: hidden;
+  }
+
+  .hero img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at center, rgba(5,5,5,0) 0%, rgba(5,5,5,0.25) 50%, rgba(5,5,5,0.7) 80%, var(--bg) 100%),
+      linear-gradient(to bottom, transparent 0%, transparent 50%, rgba(5,5,5,0.4) 65%, rgba(5,5,5,0.8) 80%, var(--bg) 95%),
+      linear-gradient(to top, transparent 90%, rgba(5,5,5,0.5) 100%),
+      linear-gradient(to right, var(--bg) 0%, transparent 8%, transparent 92%, var(--bg) 100%);
+    pointer-events: none;
+  }
+
+  /* ─── COLLECTIONS ─── */
+  .collections-wrapper {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 24px 80px;
+  }
+
+  .year-section {
+    display: none;
+    animation: fadeUp 0.5s ease forwards;
+  }
+  .year-section.active { display: block; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .collection-block {
+    padding-top: 32px;
+  }
+
+  .collection-label {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 400;
+    font-size: 20px;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    color: var(--gold-light);
+    margin-bottom: 6px;
+    padding-left: 2px;
+  }
+
+  .collection-sub {
+    font-family: 'Playfair Display', serif;
+    font-weight: 400;
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    margin-bottom: 18px;
+    padding-left: 2px;
+  }
+
+  /* ─── GOLD SEPARATOR ─── */
+  .gold-sep {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 28px 60px;
+    gap: 14px;
+  }
+  .gold-sep .line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold-dark));
+  }
+  .gold-sep .line:last-child {
+    background: linear-gradient(90deg, var(--gold-dark), transparent);
+  }
+  .gold-sep .diamond {
+    width: 6px;
+    height: 6px;
+    background: var(--gold);
+    transform: rotate(45deg);
+    box-shadow: 0 0 8px rgba(201,168,76,0.4);
+  }
+
+  /* ─── IMAGE GRID ─── */
+  .collection-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6px;
+  }
+
+  .collection-item {
+    position: relative;
+    aspect-ratio: 1 / 1.25;
+    overflow: hidden;
+    background: var(--black-rich);
+    border: 1px solid var(--border-gold);
+    cursor: pointer;
+  }
+
+  .collection-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.5s ease;
+    opacity: 0;
+    filter: sepia(0.3) saturate(1.3) brightness(0.88) contrast(1.08) hue-rotate(-8deg);
+  }
+
+  .collection-item img.loaded { opacity: 1; }
+
+  .collection-item:hover img {
+    transform: scale(1.06);
+  }
+
+  /* Gold vignette overlay */
+  .collection-item .gold-overlay {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at center, transparent 40%, rgba(5,5,5,0.45) 100%),
+      linear-gradient(180deg, transparent 60%, rgba(201,168,76,0.06) 100%);
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  /* Gold corner accents */
+  .corner-tl, .corner-br {
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    z-index: 2;
+    pointer-events: none;
+  }
+  .corner-tl {
+    top: 0; left: 0;
+    border-top: 1px solid var(--gold-dark);
+    border-left: 1px solid var(--gold-dark);
+  }
+  .corner-br {
+    bottom: 0; right: 0;
+    border-bottom: 1px solid var(--gold-dark);
+    border-right: 1px solid var(--gold-dark);
+  }
+
+  /* Loading shimmer */
+  .img-placeholder {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(110deg, #0c0a06 30%, #1a1508 50%, #0c0a06 70%);
+    background-size: 200% 100%;
+    animation: shimmer 1.8s ease-in-out infinite;
+  }
+  .img-placeholder.hidden { display: none; }
+
+  @keyframes shimmer {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+  }
+
+  /* ─── FOOTER ─── */
+  .site-footer {
+    text-align: center;
+    padding: 36px 20px 52px;
+    position: relative;
+  }
+
+  .site-footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold-dark), transparent);
+  }
+
+  .footer-logo-container {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+  }
+
+  .footer-logo-img {
+    height: 55px;
+    width: auto;
+    filter: brightness(1.8) drop-shadow(0 0 8px rgba(255,255,255,0.1));
+  }
+
+  .footer-copy {
+    font-size: 14px;
+    letter-spacing: 4px;
+    color: var(--gold);
+    margin-top: 14px;
+  }
+
+  .gold-ambient {
+    width: 100%;
+    max-width: 400px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent 10%, var(--gold-dark) 35%, var(--gold) 50%, var(--gold-dark) 65%, transparent 90%);
+    opacity: 0.5;
+    margin: 24px auto 0;
+  }
+</style>
+</head>
+<body>
+
+<!-- ─── HEADER ─── -->
+<header class="site-header">
+  <a href="/" class="header-logo-link">
+    <img class="header-logo-img" src="images/azis transparent logo.png" alt="AZIS">
+  </a>
+  <nav class="header-nav">
+    <a href="/story" class="story-link">
+      <span class="story-brand">АЗИС</span>
+      <span class="story-tagline">История за смелост, красота и среща на два свята</span>
+    </a>
+    <button class="year-btn active" data-year="2026"><span class="badge">NEW</span>2026</button>
+    <button class="year-btn" data-year="2025">2025</button>
+    <button class="year-btn" data-year="2024">2024</button>
+  </nav>
+</header>
+
+<!-- ─── HERO ─── -->
+<section class="hero">
+  <img src="images/burjoa 4k.png" alt="AZIS Collection">
+</section>
+
+<!-- ─── COLLECTIONS ─── -->
+<main class="collections-wrapper">
+
+  <!-- ═══ 2026 ═══ -->
+  <section class="year-section active" id="year-2026">
+
+    <div class="collection-block">
+      <div class="collection-grid">
+        <div class="collection-item">
+          <div class="img-placeholder"></div>
+          <img src="images/gold-sofa-design-1.webp" alt="Oro Reale 1" loading="lazy" onload="this.classList.add('loaded');this.previousElementSibling.classList.add('hidden')">
+          <div class="gold-overlay"></div>
+          <div class="corner-tl"></div><div class="corner-br"></div>
+        </div>
+        <div class="collection-item">
+          <div class="img-placeholder"></div>
+          <img src="images/gold-sofa-design-2.webp" alt="Oro Reale 2" loading="lazy" onload="this.classList.add('loaded');this.previousElementSibling.classList.add('hidden')">
+          <div class="gold-overlay"></div>
+          <div class="corner-tl"></div><div class="corner-br"></div>
+        </div>
+        <div class="collection-item">
+          <div class="img-placeholder"></div>
+          <img src="images/gold-sofa-design-3.webp" alt="Oro Reale 3" loading="lazy" onload="this.classList.add('loaded');this.previousElementSibling.classList.add('hidden')">
+          <div class="gold-overlay"></div>
+          <div class="corner-tl"></div><div class="corner-br"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="gold-sep"><span class="line"></span><span class="diamond"></span><span class="line"></span></div>
+
+    <div class="collection-block">
+      <div class="collection-grid">
+        <div class="collection-item">
+          <div class="img-placeholder"></div>
+          <img src="images/blue sofa 1.png" alt="Blue Sofa 1" loading="lazy" onload="this.classList.add('loaded');this.previousElementSibling.classList.add('hidden')">
+          <div class="gold-overlay"></div>
+          <div class="corner-tl"></div><div class="corner-br"></div>
+        </div>
+        <div class="collection-item">
+          <div class="img-placeholder"></div>
+          <img src="images/blue sofa 2.png" alt="Blue Sofa 2" loading="lazy" onload="this.classList.add('loaded');this.previousElementSibling.classList.add('hidden')">
+          <div class="gold-overlay"></div>
+          <div class="corner-tl"></div><div class="corner-br"></div>
+        </div>
+        <div class="collection-item">
+          <div class="img-placeholder"></div>
+          <img src="images/blue sofa 3.png" alt="Blue Sofa 3" loading="lazy" onload="this.classList.add('loaded');this.previousElementSibling.classList.add('hidden')">
+          <div class="gold-overlay"></div>
+          <div class="corner-tl"></div><div class="corner-br"></div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ═══ 2025 ═══ -->
+  <section class="year-section" id="year-2025">
+
+    <div class="collection-block">
+      <div class="collection-grid">
+        <div class="collection-item">
+          <div class="img-placeholder"></div>
+          <img src="images/col2-1.jpg" alt="Velluto Notte 1" loading="lazy" onload="this.classList.add('loaded');this.previousElementSibling.classList.add('hidden')">
+          <div class="gold-overlay"></div>
+          <div class="corner-tl"></div><div class="corner-br"></div>
+        </div>
+        <div class="collection-item">
+          <div class="img-placeholder"></div>
+          <img src="images/col2-2.jpg" alt="Velluto Notte 2" loading="lazy" onload="this.classList.add('loaded');this.previousElementSibling.classList.add('hidden')">
+          <div class="gold-overlay"></div>
+          <div class="corner-tl"></div><div class="corner-br"></div>
+        </div>
+        <div class="collection-item">
+          <div class="img-placeholder"></div>
+          <img src="images/col2-3.jpg" alt="Velluto Notte 3" loading="lazy" onload="this.classList.add('loaded');this.previousElementSibling.classList.add('hidden')">
+          <div class="gold-overlay"></div>
+          <div class="corner-tl"></div><div class="corner-br"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="gold-sep"><span class="line"></span><span class="diamond"></span><span class="line"></span></div>
+
+    <div class="collection-block">
+      <div class="collection-grid">
+        <div class="collection-item">
+          <div class="img-placeholder"></div>
+          <img src="images/gucci1.jpg" alt="Gucci 1" loading="lazy" onload="this.classList.add('loaded');this.previousElementSibling.classList.add('hidden')">
+          <div class="gold-overlay"></div>
+          <div class="corner-tl"></div><div class="corner-br"></div>
+        </div>
+        <div class="collection-item">
+          <div class="img-placeholder"></div>
+          <img src="images/gucci2.jpg" alt="Gucci 2" loading="lazy" onload="this.classList.add('loaded');this.previousElementSibling.classList.add('hidden')">
+          <div class="gold-overlay"></div>
+          <div class="corner-tl"></div><div class="corner-br"></div>
+        </div>
+        <div class="collection-item">
+          <div class="img-placeholder"></div>
+          <img src="images/gucci3.jpg" alt="Gucci 3" loading="lazy" onload="this.classList.add('loaded');this.previousElementSibling.classList.add('hidden')">
+          <div class="gold-overlay"></div>
+          <div class="corner-tl"></div><div class="corner-br"></div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ═══ 2024 ═══ -->
+  <section class="year-section" id="year-2024">
+
+    <div class="collection-block">
+      <div class="collection-grid">
+        <div class="collection-item">
+          <div class="img-placeholder"></div>
+          <img src="images/col3-1.jpg" alt="Terra Classica 1" loading="lazy" onload="this.classList.add('loaded');this.previousElementSibling.classList.add('hidden')">
+          <div class="gold-overlay"></div>
+          <div class="corner-tl"></div><div class="corner-br"></div>
+        </div>
+        <div class="collection-item">
+          <div class="img-placeholder"></div>
+          <img src="images/col3-2.jpg" alt="Terra Classica 2" loading="lazy" onload="this.classList.add('loaded');this.previousElementSibling.classList.add('hidden')">
+          <div class="gold-overlay"></div>
+          <div class="corner-tl"></div><div class="corner-br"></div>
+        </div>
+        <div class="collection-item">
+          <div class="img-placeholder"></div>
+          <img src="images/col3-3.jpg" alt="Terra Classica 3" loading="lazy" onload="this.classList.add('loaded');this.previousElementSibling.classList.add('hidden')">
+          <div class="gold-overlay"></div>
+          <div class="corner-tl"></div><div class="corner-br"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="gold-sep"><span class="line"></span><span class="diamond"></span><span class="line"></span></div>
+
+    <div class="collection-block">
+      <div class="collection-grid">
+        <div class="collection-item">
+          <div class="img-placeholder"></div>
+          <img src="images/valentino1.jpg" alt="Valentino 1" loading="lazy" onload="this.classList.add('loaded');this.previousElementSibling.classList.add('hidden')">
+          <div class="gold-overlay"></div>
+          <div class="corner-tl"></div><div class="corner-br"></div>
+        </div>
+        <div class="collection-item">
+          <div class="img-placeholder"></div>
+          <img src="images/valentino2.jpg" alt="Valentino 2" loading="lazy" onload="this.classList.add('loaded');this.previousElementSibling.classList.add('hidden')">
+          <div class="gold-overlay"></div>
+          <div class="corner-tl"></div><div class="corner-br"></div>
+        </div>
+        <div class="collection-item">
+          <div class="img-placeholder"></div>
+          <img src="images/valentino3.jpg" alt="Valentino 3" loading="lazy" onload="this.classList.add('loaded');this.previousElementSibling.classList.add('hidden')">
+          <div class="gold-overlay"></div>
+          <div class="corner-tl"></div><div class="corner-br"></div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+</main>
+
+<!-- ─── FOOTER ─── -->
+<footer class="site-footer">
+  <div class="footer-logo-container">
+    <img class="footer-logo-img" src="images/azis transparent logo.png" alt="AZIS">
+  </div>
+  <div class="footer-copy">&copy; 2024 — 2026 All Rights Reserved</div>
+  <div class="gold-ambient"></div>
+</footer>
+
+<script>
+  const buttons = document.querySelectorAll('.year-btn');
+  const sections = document.querySelectorAll('.year-section');
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const year = btn.dataset.year;
+      buttons.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      sections.forEach(s => {
+        s.classList.remove('active');
+        if (s.id === `year-${year}`) s.classList.add('active');
+      });
+    });
+  });
+</script>
+</body>
+</html>
