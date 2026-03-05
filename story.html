@@ -238,14 +238,34 @@
 
   .story-image-caption {
     font-family: 'Cormorant Garamond', serif;
-    font-weight: 500;
-    font-size: 20px;
-    letter-spacing: 4px;
+    font-weight: 400;
+    font-size: 28px;
+    letter-spacing: 6px;
     text-transform: uppercase;
     color: var(--gold-light);
     text-align: center;
-    margin-top: 16px;
-    text-shadow: 0 0 12px rgba(201,168,76,0.2);
+    margin-top: 20px;
+    text-shadow: 0 0 16px rgba(201,168,76,0.25);
+  }
+
+  .story-image-caption .numeral {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: 36px;
+    letter-spacing: 6px;
+    display: block;
+    margin-bottom: 4px;
+    background: linear-gradient(135deg, var(--gold), var(--gold-light));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .story-image-caption .year {
+    font-size: 18px;
+    letter-spacing: 4px;
+    color: var(--gold);
+    font-weight: 300;
   }
 
   .story-quote {
@@ -375,7 +395,10 @@
     <div class="story-image">
       <img src="images/azis-1996.jpg" alt="Азис 1 - 1996">
     </div>
-    <div class="story-image-caption">Азис 1 — 1996 г.</div>
+    <div class="story-image-caption">
+      <span class="numeral">АЗИС I</span>
+      <span class="year">1996 г.</span>
+    </div>
 
     <p>Тя е като <span class="highlight">среща между два свята на красотата</span>.</p>
     <p>Между <span class="highlight">богатството, орнаментите и топлината на Ориента</span> и <span class="highlight">чистите линии, функционалността и хармонията на съвременния европейски дом</span>.</p>
