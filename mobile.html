@@ -147,24 +147,29 @@
   .showcase-image {
     position: relative;
     width: 100%;
-    margin-bottom: 4px;
+    padding: 0 8px;
+  }
+
+  .showcase-image .showcase-frame {
+    position: relative;
+    border: 1px solid var(--gold-dark);
+    padding: 4px;
+    background: var(--black-rich);
+  }
+
+  .showcase-image .showcase-frame::before {
+    content: '';
+    position: absolute;
+    inset: 2px;
+    border: 1px solid rgba(201,168,76,0.15);
+    pointer-events: none;
+    z-index: 1;
   }
 
   .showcase-image img {
     width: 100%;
     height: auto;
     display: block;
-  }
-
-  .showcase-image::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background:
-      linear-gradient(to bottom, transparent 0%, transparent 85%, rgba(5,5,5,0.3) 93%, var(--bg) 100%),
-      linear-gradient(to top, transparent 97%, rgba(5,5,5,0.3) 100%),
-      linear-gradient(to right, var(--bg) 0%, transparent 3%, transparent 97%, var(--bg) 100%);
-    pointer-events: none;
   }
 
   /* ─── HERO IMAGE ─── */
@@ -410,8 +415,12 @@
   <section class="year-section active" id="year-2026">
 
     <div class="showcase-image">
-      <img src="images/Azis spalniya.png" alt="Azis Спалня">
+      <div class="showcase-frame">
+        <img src="images/Azis spalniya.png" alt="Azis Спалня">
+      </div>
     </div>
+
+    <div class="gold-sep"><span class="line"></span><span class="diamond"></span><span class="line"></span></div>
 
     <div class="collection-block">
       <div class="collection-grid">
